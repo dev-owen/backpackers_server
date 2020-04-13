@@ -1,0 +1,22 @@
+{
+  "name": "backpackers_server",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Wonjong Oh",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "http-status": "^1.4.2",
+    "joi": "^14.3.1",
+    "mongoose": "^5.9.7",
+    "restify": "^8.5.1",
+    "restify-errors": "^8.0.2",
+    "restify-url-semver": "^1.1.1",
+    "winston": "^3.1.0"
+  }
+}
