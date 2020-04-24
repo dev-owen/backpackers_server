@@ -1,36 +1,35 @@
-'use strict';
+"use strict";
 
 class UserController {
-    constructor(log, userService, httpStatus) {
-        this.log = log;
-        this.userService = userService;
-        this.httpStatus = httpStatus;
+  constructor(log, userService, httpStatus) {
+    this.log = log;
+    this.userService = userService;
+    this.httpStatus = httpStatus;
+  }
+
+  async create(req, res) {
+    try {
+      const { body } = req;
+      const result = await this.userService.createUser(body);
+
+      res.send(result);
+    } catch (err) {
+      this.log.error(err.message);
+      res.send(err);
     }
+  }
 
-    async create(req, res) {
-        try {
-            const { body } = req;
-            const result = await this.userService.createUser(body);
+  async get(req, res) {
+    try {
+      const { username } = req.params;
+      const result = await this.userService.getUser(username);
 
-            res.send(result);
-        } catch (err) {
-            this.log.error(err.message);
-            res.send(err);
-        }
+      res.send(result);
+    } catch (err) {
+      this.log.error(err.message);
+      res.send(err);
     }
-
-    async get(req, res) {
-        try{
-            const { username } = req.params;
-            const result = await this.userService.getUser(username);
-
-            res.send(result);
-        } catch (err) {
-            this.log.error(err.message);
-            res.send(err);
-        }
-    }
-
+  }
 }
 
 module.exports = UserController;

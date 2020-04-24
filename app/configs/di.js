@@ -38,4 +38,23 @@ serviceLocator.register('userController', (serviceLocator) => {
     return new UserController(log, userService, httpStatus);
 });
 
+serviceLocator.register('spotService', (serviceLocator) => {
+    const log = serviceLocator.get('logger');
+    const mongoose = serviceLocator.get('mongoose');
+    const httpStatus = serviceLocator.get('httpStatus');
+    const errs = serviceLocator.get('errs');
+    const SpotService = require('../services/spot');
+
+    return new SpotService(log, mongoose, httpStatus, errs);
+});
+
+serviceLocator.register('spotController', (serviceLocator) => {
+    const log = serviceLocator.get('logger');
+    const httpStatus = serviceLocator.get('httpStatus');
+    const spotService = serviceLocator.get('spotService');
+    const SpotController = require('../controllers/spot');
+
+    return new SpotController(log, spotService, httpStatus);
+});
+
 module.exports = serviceLocator;
