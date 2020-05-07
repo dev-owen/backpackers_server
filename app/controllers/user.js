@@ -30,6 +30,30 @@ class UserController {
       res.send(err);
     }
   }
+
+  async update(req, res) {
+    try {
+      const { body } = req;
+      const result = await this.userService.updateUser(body);
+
+      res.send(result);
+    } catch (err) {
+      this.log.error(err.message);
+      res.send(err);
+    }
+  }
+
+  async delete(req, res) {
+    try {
+      const { username } = req.params;
+      const result = await this.userService.deleteUser(username);
+
+      res.send(result);
+    } catch (err) {
+      this.log.error(err.message);
+      res.send(err);
+    }
+  }
 }
 
 module.exports = UserController;

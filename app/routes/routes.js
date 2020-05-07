@@ -23,6 +23,26 @@ module.exports.register = (server, serviceLocator) => {
     (req, res, next) => serviceLocator.get("userController").get(req, res, next)
   );
 
+  server.put(
+    {
+      path: "/users/:username",
+      name: "Update User",
+      version: "1.0.0",
+    },
+    (req, res, next) =>
+      serviceLocator.get("userController").update(req, res, next)
+  );
+
+  server.del(
+    {
+      path: "/users/:username",
+      name: "Delete User",
+      version: "1.0.0",
+    },
+    (req, res, next) =>
+      serviceLocator.get("userController").delete(req, res, next)
+  );
+
   server.post(
     {
       path: "/spots",
@@ -32,7 +52,8 @@ module.exports.register = (server, serviceLocator) => {
         body: require("../validations/create_spot"),
       },
     },
-    (req, res, next) => serviceLocator.get("spotController").create(req, res, next)
+    (req, res, next) =>
+      serviceLocator.get("spotController").create(req, res, next)
   );
 
   server.get(
