@@ -16,9 +16,18 @@
 - mongoose
 - restify
 - winston
+- joi
 
 ### 그 외 (Else)
 
 - Webpack
 - Babel
-- Scss
+
+## API
+
+### User
+
+- POST /users : create user
+- GET /users/:username : get user info
+- PUT /users/:username : update user info
+- DELETE /users/:username : delete user
