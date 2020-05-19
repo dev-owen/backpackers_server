@@ -44,6 +44,16 @@ class UserService {
     return user;
   }
 
+  async getAllUsers() {
+    const User = this.mongoose.model("Users");
+    const allUsers = await User.find();
+    if(!allUsers) {
+      const err = this.errs.message("there are no user in db");
+      return err;
+    }
+    return allUsers;
+  }
+
   async updateUser(body) {
     this.mongoose.set("useFindAndModify", false);
     const User = this.mongoose.model("Users");

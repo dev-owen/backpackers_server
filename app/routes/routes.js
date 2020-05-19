@@ -23,6 +23,15 @@ module.exports.register = (server, serviceLocator) => {
     (req, res, next) => serviceLocator.get("userController").get(req, res, next)
   );
 
+  server.get(
+    {
+      path: "/allusers",
+      name: "Get All Users",
+      version: "1.0.0",
+    },
+    (req, res, next) => serviceLocator.get("userController").getAllUsers(req, res, next)
+  );
+
   server.put(
     {
       path: "/users/:username",
