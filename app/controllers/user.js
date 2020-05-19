@@ -34,7 +34,6 @@ class UserController {
   async getAllUsers(req, res) {
     try {
       const result = await this.userService.getAllUsers();
-      console.log(result);
       res.send(result);
     } catch (err) {
       this.log.error(err.message);

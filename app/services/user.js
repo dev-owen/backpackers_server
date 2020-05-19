@@ -47,7 +47,7 @@ class UserService {
   async getAllUsers() {
     const User = this.mongoose.model("Users");
     const allUsers = await User.find();
-    if(!allUsers) {
+    if (!allUsers) {
       const err = this.errs.message("there are no user in db");
       return err;
     }
@@ -57,35 +57,30 @@ class UserService {
   async updateUser(body) {
     this.mongoose.set("useFindAndModify", false);
     const User = this.mongoose.model("Users");
-    const { username } = body;
     const bodyJson = JSON.parse(body);
+    const { username, email, country, introduction } = bodyJson;
+    console.log(email);
+    console.log(country);
     User.findOneAndUpdate(
-      { username },
-      bodyJson,
-      { new: true, upsert: true, remove: {}, fields: {} },
-      (err, user) => {
-        console.log(user);
+      { username: username },
+      {
+        $set: {
+          email: email,
+          country: country,
+          introduction: introduction
+        }
+      },
+      {
+        new: false,
+        upsert: false,
+        returnNewDocument: true
+      },
+      (err) => {
         if (err) return err;
-        return user;
       }
     );
-
-    // const user = await Users.findOne({ username });
-    // if (!user) {
-    //   const err = new this.errs.InvalidArgumentError(
-    //     "User with username does not exist"
-    //   );
-    //   return err;
-    // }
-    //
-    // let updatedUser = new Users(body);
-    // updatedUser.country = body.country;
-    // updatedUser.email = body.email;
-    // updatedUser.introduction = body.introduction;
-    // updatedUser = await updatedUser.save();
-
     this.log.info("User Update Successfully");
-    return User;
+    return bodyJson;
   }
 
   async deleteUser(username) {

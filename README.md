@@ -23,11 +23,12 @@
 - Webpack
 - Babel
 
-## API
+## API Document
 
 ### User
 
 - POST /users : create user
 - GET /users/:username : get user info
+- GET /allusers : get all users info
 - PUT /users/:username : update user info
 - DELETE /users/:username : delete user
