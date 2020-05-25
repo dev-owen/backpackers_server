@@ -21,6 +21,8 @@ class UserService {
     }
 
     let newUser = new User(body);
+    newUser.password = body.password;
+    newUser.email = body.email;
     newUser.country = body.country;
     newUser.introduction = body.introduction;
     newUser = await newUser.save();
