@@ -60,14 +60,13 @@ class UserService {
     this.mongoose.set("useFindAndModify", false);
     const User = this.mongoose.model("Users");
     const bodyJson = JSON.parse(body);
-    const { username, email, country, introduction } = bodyJson;
-    console.log(email);
-    console.log(country);
+    const { username, password, email, country, introduction } = bodyJson;
     User.findOneAndUpdate(
       { username: username },
       {
         $set: {
           email: email,
+          password: password,
           country: country,
           introduction: introduction
         }

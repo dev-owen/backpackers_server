@@ -4,16 +4,6 @@
 const serviceLocator = require("../lib/service_locator");
 const mongoose = serviceLocator.get("mongoose");
 
-// const spotSchema = new mongoose.Schema({
-//   spotname: {
-//     type: String,
-//     trim: true,
-//     required: true,
-//     unique: true,
-//     lowercase: true
-//   }
-// });
-
 // User Schema
 const userSchema = new mongoose.Schema(
   {
